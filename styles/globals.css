@@ -4,8 +4,12 @@
 
 .root,
 #root {
-  --primary: #1D3F0A;
-  --secondary: #E4AA2B;
-  --contrast: #C93B22;
+  --primary: #D20606;
+  --secondary: #BCB2B2;
+  --contrast: #e78a51;
   --accent: #D1CDB2;
+}
+
+.required{
+  @apply text-red-500 text-xs italic;
 }
