@@ -112,15 +112,18 @@ function WebLandingPageViewbk2(props) {
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
-                    <Image
-                      className=" "
-                      height={80}
-                      width={300}
-                      src={event.src}
-                      alt=" Card Image"
-                    />
+                      <a href='/events'>
+                        <Image
+                        className=" "
+                        height={80}
+                        width={300}
+                        src={event.src}
+                        alt=" Card Image"
+                        />
+                      </a>
+                    
                     <div className='text-white px-3 pb-6'>
-                      <div className='text-xl font-semibold py-3'>{event.title}</div>
+                    <a href='/events'><div className='text-xl font-semibold py-3'>{event.title}</div></a>
                       <div className='flex gap-1 items-start text-[12px] pb-2'>
                         <Image
                         className=""
@@ -154,15 +157,17 @@ function WebLandingPageViewbk2(props) {
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
-                    <Image
-                      className=" "
-                      height={80}
-                      width={300}
-                      src={event.src}
-                      alt=" Card Image"
-                    />
+                    <a href='/events'>
+                        <Image
+                        className=" "
+                        height={80}
+                        width={300}
+                        src={event.src}
+                        alt=" Card Image"
+                        />
+                      </a>
                     <div className='text-white px-3 pb-6'>
-                      <div className='text-xl font-semibold py-3'>{event.title}</div>
+                      <a href='/events'><div className='text-xl font-semibold py-3'>{event.title}</div></a>
                       <div className='flex gap-1 items-start text-[12px] pb-2'>
                         <Image
                         className=""

@@ -8,11 +8,11 @@ import { useState,Fragment } from 'react';
 
 
 const navigation = [
-  { name: 'Home', href: '/#report', to: 'report' },
-  { name: 'About', href: '/#papers', to: 'papers' },
-  { name: 'Create Event', href: '/#rep', to: 'rep' },
-  { name: 'Help', href: '/#rep', to: 'rep' },
-  { name: 'Login', href: '/#rep', to: 'rep' },
+  { name: 'Home', href: '/', to: 'home' },
+  { name: 'About', href: '/about', to: 'about' },
+  { name: 'Create Event', href: '/create', to: 'create' },
+  { name: 'Help', href: '/help', to: 'help' },
+  { name: 'Login', href: '/login', to: 'login' },
 ];
 
 
