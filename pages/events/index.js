@@ -16,7 +16,7 @@ const Events = () => {
           src="/card.png"
           alt="Text"
         />
-        <div className="pb-10 pt-3 px-7">
+        <div className="pb-10 pt-3 lg:px-7 ">
         <div  className=" text-[#004E89] font-semibold pb-2 lg:text-4xl text-xl" >I have a Dreamstandup Event</div>
         <div className=" lg:text-lg text-sm font-medium flex pb-2  flex-wrap">The biggest celebration of Owerri artiste</div>
         <div className=" text-sm font-normal flex flex-wrap text-justify">The biggest celebration of African music and culture is here again. I have a dream standup, a festival that unites people both in Nigeria and diaspora, is back, bigger and better.In this festival, watch out as we bring SME business owners from all over the country to put on display not only their ready-made products but their homemade African products. There'll be many other events like spoken words, etc. We will also be crowning the vendor of the year.</div>
@@ -26,21 +26,21 @@ const Events = () => {
           className=""
           height={500}
           width={700}
-          src="/card.png"
+          src="/map.png"
           alt="Text"
         />
         <div className="flex lg:flex-row flex-col w-full gap-5 pt-16">
           <Image
             className=""
             height={100}
-            width={320}
-            src="/map.png"
+            width={300}
+            src="/card.png"
             alt="Text"
           />
           <Image
             className=""
             height={100}
-            width={320}
+            width={300}
             src="/card.png"
             alt="Text"
           />
