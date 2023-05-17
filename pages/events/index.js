@@ -34,7 +34,7 @@ const Events = () => {
             className=""
             height={100}
             width={320}
-            src="/card.png"
+            src="/map.png"
             alt="Text"
           />
           <Image
@@ -55,7 +55,7 @@ const Events = () => {
                 className=""
                 height={10}
                 width={20}
-                src="/date.svg"
+                src="/date2.svg"
                 alt="Text"
               />
             </span>
@@ -69,7 +69,7 @@ const Events = () => {
                 className=""
                 height={10}
                 width={20}
-                src="/date.svg"
+                src="/clock.svg"
                 alt="Text"
               />
             </span>
@@ -83,7 +83,7 @@ const Events = () => {
                 className=""
                 height={10}
                 width={20}
-                src="/Location.svg"
+                src="/location.svg"
                 alt="Text"
               />
             </span>

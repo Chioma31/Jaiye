@@ -121,7 +121,7 @@ function Footer () {
         </div>  
                   
       </div>
-      <div className='flex  justify-center text-center border-t border-[#D20606] flex-col items-center'>
+      <div className='flex  justify-center text-center border-t pb-3 border-[#D20606] flex-col items-center'>
         <div className="text-4xl font-bold  tracking-tight">
           <span className="text-lg text-[#fefefe] font-normal ">© Jaiye 2023</span>
         </div>

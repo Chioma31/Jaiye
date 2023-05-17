@@ -10,7 +10,7 @@ import { useState,Fragment } from 'react';
 const navigation = [
   { name: 'Home', href: '/', to: 'home' },
   { name: 'About', href: '/about', to: 'about' },
-  { name: 'Create Event', href: '/create', to: 'create' },
+  { name: 'Create Event', href: '/info', to: 'create' },
   { name: 'Help', href: '/help', to: 'help' },
   { name: 'Login', href: '/login', to: 'login' },
 ];
