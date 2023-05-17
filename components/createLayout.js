@@ -106,7 +106,7 @@ export default function CreateLayout(props) {
               <Disclosure.Panel className="sm:hidden">
                 <div className="space-y-1 pb-3 pt-2">
                   {navigation.map((item) => (
-                    <Disclosure.Button
+                    <Link
                     onClick={() => {
                       setCurrentMenu(item.href);
                     }}
@@ -121,7 +121,7 @@ export default function CreateLayout(props) {
                       aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
-                    </Disclosure.Button>
+                    </Link>
                   ))}
                 </div>
                 <div className="border-t border-gray-200 pb-3 pt-4">
@@ -159,7 +159,7 @@ export default function CreateLayout(props) {
             </div>
           </header>
           <main>
-            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{props.content}</div>
+            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{props.children}</div>
           </main>
         </div>
       </div>
