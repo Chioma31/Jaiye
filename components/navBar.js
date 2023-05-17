@@ -22,9 +22,12 @@ function NavBar () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleOpening = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   
-  const genericHamburgerLine = `h-1 w-10 mt-[7px] rounded-full bg-[#AEAEAE] transition ease transform duration-300`;
+  // const genericHamburgerLine = `h-1 w-10 mt-[7px] rounded-full bg-[#AEAEAE] transition ease transform duration-300`;
 
 
   return (
@@ -55,28 +58,28 @@ function NavBar () {
           </div>
         </div>
         <div className="flex lg:hidden">
-        <button
-        className="flex flex-col h-12 w-12 border-2 border-black rounded justify-center items-center group"
-        onClick={() => setMobileMenuOpen(true)}
-        >
-        <div onClick={() => setIsOpen(!isOpen)}>
-          <div className={`${genericHamburgerLine} ${
-            isOpen
-                ? " rotate-45 translate-y-3  group-hover:opacity-100"
-                : " group-hover:opacity-100"
-            }`}
-          />
-          <div className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : " group-hover:opacity-100"}`} />
-          <div className={`${genericHamburgerLine} ${
-            isOpen
-                ? "-rotate-45 -translate-y-3  group-hover:opacity-100"
-                : " group-hover:opacity-100"
-            }`}
-          />
-        </div>
-        
-        </button>
           {/* <button
+          className="flex flex-col h-12 w-12 border-2 border-black rounded justify-center items-center group"
+          onClick={() => setIsOpen(!isOpen)}
+          >
+          <div  onClick={() => setMobileMenuOpen(true)}>
+            <div className={`${genericHamburgerLine} ${
+              isOpen
+                  ? " rotate-45 translate-y-3  group-hover:opacity-100"
+                  : " group-hover:opacity-100"
+              }`}
+            />
+            <div className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : " group-hover:opacity-100"}`} />
+            <div className={`${genericHamburgerLine} ${
+              isOpen
+                  ? "-rotate-45 -translate-y-3  group-hover:opacity-100"
+                  : " group-hover:opacity-100"
+              }`}
+            />
+          </div>
+          
+          </button> */}
+          <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
@@ -85,13 +88,9 @@ function NavBar () {
             <div className='text-black' onClick={handleOpening}>
               {mobileMenuOpen
             ? (<XMarkIcon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />)
-            : (<div class="space-y-2">
-            <span class="block w-8 h-0.5 bg-white"></span>
-            <span class="block w-8 h-0.5 bg-white"></span>
-            <span class="block w-5 h-0.5 bg-white"></span>
-          </div>)}
+            : (<Bars3Icon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />)}
           </div>
-          </button> */}
+          </button>
         </div>
 
         <div className="hidden font-normal lg:flex text-lg lg:min-w-0 space-x-8">
@@ -137,13 +136,13 @@ function NavBar () {
                 </a>
               </div>
               <div className="flex">
-                <button
+                {/* <button
                   type="button"
                   className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
+                   onClick={() => setIsOpen(!isOpen)}
                 >
                   <span className="sr-only">Close menu</span>
-                  <div onClick={() => setIsOpen(!isOpen)}>
+                  <div onClick={() => setMobileMenuOpen(false)} >
                     <div className={`${genericHamburgerLine} ${
                       isOpen
                           ? "rotate-45 translate-y-3  group-hover:opacity-100"
@@ -157,6 +156,16 @@ function NavBar () {
                           : " group-hover:opacity-100"
                       }`}
                     />
+                  </div>
+                </button> */}
+                <button
+                  type="button"
+                  className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="sr-only">Open main menu</span>
+                  <div className='text-black' onClick={handleOpening} >
+                    <XMarkIcon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />
                   </div>
                 </button>
               </div>

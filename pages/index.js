@@ -108,7 +108,7 @@ function WebLandingPageViewbk2(props) {
                 <div className='  bg-[#D20606] px-8 py-[4px] rounded-full'></div>
                 <div className='  bg-[#353434] px-10 py-[3px] rounded-full'></div>
               </div>
-              <div className='bg-black px-6 md:px-10 xl:px-40 3xl:px-72 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col  items-center gap-10 '>
+              <div className='bg-black px-6 md:px-20 xl:px-40 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col  items-center gap-10 '>
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
@@ -153,7 +153,7 @@ function WebLandingPageViewbk2(props) {
                 <div className='  bg-[#D20606] px-8 py-[4px] rounded-full'></div>
                 <div className='  bg-[#353434] px-10 py-[3px] rounded-full'></div>
               </div>
-              <div className='bg-black px-6 md:px-10 xl:px-40 3xl:px-72 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col items-center gap-10 '>
+              <div className='bg-black px-6 md:px-20 xl:px-40 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col items-center gap-10 '>
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
