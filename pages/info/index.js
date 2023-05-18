@@ -149,7 +149,7 @@ const Info = (props) => {
               >
               To be announced
             </button>
-            </div>         
+          </div>         
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
