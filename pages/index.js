@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import NavBar from '../components/navBar';
+import Footer from '../components/footer';
 
 
 const card = [
@@ -46,8 +47,8 @@ function WebLandingPageViewbk2(props) {
             <div className=" " />
             {/* text on the slide start */}
             {/* hero start */}
-            <div className=" w-full bg-[url('/image1.png')]  bg-cover ">
-              <NavBar />
+            <NavBar />
+            <div className=" w-full lg:bg-[url('/jaiye1.png')] bg-[url('/jaiye2.png')] bg-cover ">            
               <div className='px-6  2xl:px-28 py-56 flex items-center justify-start '>
                 <Image
                   className=""
@@ -59,7 +60,7 @@ function WebLandingPageViewbk2(props) {
               </div>
             </div>
             {/* hero end */}
-            <div className='bg-[#5B5B5B] p-5 2xl:px-80 lg:px-40 px-10 flex justify-center text-white gap-16 items-center'>
+            <div className='bg-[#5B5B5B] p-5 2xl:px-80 lg:px-40 sm:px-10 px-3 flex justify-center text-white lg:gap-16 gap-4 items-center flex-wrap'>
               <div>Filter By</div>
               <div className=' border border-white py-4 '></div>
               <div className='flex gap-1'>
@@ -107,19 +108,22 @@ function WebLandingPageViewbk2(props) {
                 <div className='  bg-[#D20606] px-8 py-[4px] rounded-full'></div>
                 <div className='  bg-[#353434] px-10 py-[3px] rounded-full'></div>
               </div>
-              <div className='bg-black px-6 md:px-10 xl:px-40 3xl:px-72 pb-9 grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 '>
+              <div className='bg-black px-6 md:px-20 xl:px-40 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col  items-center gap-10 '>
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
-                    <Image
-                      className=" "
-                      height={80}
-                      width={300}
-                      src={event.src}
-                      alt=" Card Image"
-                    />
+                      <a href='/events'>
+                        <Image
+                        className=" "
+                        height={80}
+                        width={300}
+                        src={event.src}
+                        alt=" Card Image"
+                        />
+                      </a>
+                    
                     <div className='text-white px-3 pb-6'>
-                      <div className='text-xl font-semibold py-3'>{event.title}</div>
+                    <a href='/events'><div className='text-xl font-semibold py-3'>{event.title}</div></a>
                       <div className='flex gap-1 items-start text-[12px] pb-2'>
                         <Image
                         className=""
@@ -149,19 +153,21 @@ function WebLandingPageViewbk2(props) {
                 <div className='  bg-[#D20606] px-8 py-[4px] rounded-full'></div>
                 <div className='  bg-[#353434] px-10 py-[3px] rounded-full'></div>
               </div>
-              <div className='bg-black px-6 md:px-10 xl:px-40 3xl:px-72 pb-9 grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 '>
+              <div className='bg-black px-6 md:px-20 xl:px-40 pb-9 sm:grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 flex flex-col items-center gap-10 '>
                 {
                   card.map((event) => (
                     <div className='bg-[#272727] rounded-sm shadow-xl  w-72 '>
-                    <Image
-                      className=" "
-                      height={80}
-                      width={300}
-                      src={event.src}
-                      alt=" Card Image"
-                    />
+                    <a href='/events'>
+                        <Image
+                        className=" "
+                        height={80}
+                        width={300}
+                        src={event.src}
+                        alt=" Card Image"
+                        />
+                      </a>
                     <div className='text-white px-3 pb-6'>
-                      <div className='text-xl font-semibold py-3'>{event.title}</div>
+                      <a href='/events'><div className='text-xl font-semibold py-3'>{event.title}</div></a>
                       <div className='flex gap-1 items-start text-[12px] pb-2'>
                         <Image
                         className=""
@@ -190,124 +196,7 @@ function WebLandingPageViewbk2(props) {
               </div>
             </div>
             
-            <footer  className=" z-10  w-full text-white bg-[#333333] ">
-              <div className='px-6 2xl:px-72 flex justify-between  pt-10 pb-20'>
-                <div className="">
-                  <a href="/">
-                    <Image
-                      className="py-2 "
-                      height={100}
-                      width={100}
-                      src="/jaiye.png"
-                      alt=" Logo"
-                    />
-                  </a>
-                  <div >Feel to reach or contact us <br/>on our social media handles </div>
-                  <div className='flex gap-5'>
-                    <a href="/">
-                      <Image
-                        className="mt-7 "
-                        height={20}
-                        width={20}
-                        src="/ig.svg"
-                        alt=" Logo"
-                      />
-                    </a>
-                    <a href="/">
-                      <Image
-                        className="mt-7 "
-                        height={20}
-                        width={20}
-                        src="/fb.svg"
-                        alt=" Logo"
-                      />
-                    </a>
-                    <a href="/">
-                      <Image
-                        className="mt-7 "
-                        height={20}
-                        width={20}
-                        src="/tk.svg"
-                        alt=" Logo"
-                      />
-                    </a>
-                    <a href="/">
-                      <Image
-                        className="mt-7 "
-                        height={20}
-                        width={20}
-                        src="/tw.svg"
-                        alt=" Logo"
-                      />
-                    </a>
-
-                  </div>
-                </div>
-                <div className='flex flex-col gap-4 justify-start'>
-                  <div className='text-2xl'>Services</div>
-                  <div className='flex -mt-2'>
-                    <div className='  bg-[#D20606] px-8 py-[2px] rounded-full'></div>
-                    <div className='  bg-[#6b1010] px-10 py-[1px]'></div>
-                  </div>
-                  <div>Movie Ticket</div>
-                  <div>Event Ticket</div>
-                  <div>Seat Reservations</div>
-                </div>
-                <div className='flex flex-col gap-4 justify-start'>
-                  <div className='text-2xl'>Quick Links</div>
-                  <div className='flex -mt-2'>
-                    <div className='  bg-[#D20606] px-8 py-[2px] rounded-full'></div>
-                    <div className='  bg-[#6b1010] px-10 py-[1px]'></div>
-                  </div>
-                  <div>About Us</div>
-                  <div>Privacy Policy</div>
-                  <div>Terms and conditions</div>
-                </div>
-                <div className='flex flex-col gap-4 justify-start'>
-                  <div className='text-2xl'>Contact</div>
-                  <div className='flex -mt-2'>
-                    <div className='  bg-[#D20606] px-8 py-[2px] rounded-full'></div>
-                    <div className='  bg-[#6b1010] px-10 py-[1px]'></div>
-                  </div>
-                  <div className='flex gap-2 items-center '>
-                      <Image
-                      className=""
-                      height={10}
-                      width={20}
-                      src="/place.svg"
-                      alt="icon"
-                      />
-                    192, Ohio, USA
-                  </div>
-                  <div className='flex gap-2 items-center '>
-                      <Image
-                      className=""
-                      height={10}
-                      width={20}
-                      src="/phone.svg"
-                      alt="icon"
-                      />
-                    +011-456-789-23
-                  </div>
-                  <div className='flex gap-2 items-center '>
-                      <Image
-                      className=""
-                      height={10}
-                      width={20}
-                      src="/email.svg"
-                      alt="icon"
-                      />
-                    jaiye@gmail.com
-                  </div>
-                </div>  
-                          
-              </div>
-              <div className='flex justify-center border-t border-[#D20606] flex-col items-center'>
-                <div className="text-4xl font-bold  tracking-tight wrap">
-                  <span className="text-lg text-[#fefefe] font-normal  wrap">© Jaiye 2023</span>
-                </div>
-              </div>
-            </footer>
+            <Footer />
           </div>
     </div>
   );
