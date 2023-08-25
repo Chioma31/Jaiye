@@ -108,7 +108,7 @@ function NavBar () {
               {item.name}
             </Link>
           ))}
-          <Link href="/" className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">Sign Up</Link>
+          <Link href="/signup" className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">Sign Up</Link>
         </div>
       </nav>
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
