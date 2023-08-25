@@ -73,7 +73,7 @@ const Login= ()=>{
                         
                         <div className="self-center flex flex-row my-16">
                             <p className="self-center px-1 text-[#868585]">Don't have an account?</p>
-                            <a href="" className="text-[#D20606]">Sign up</a>
+                            <a href="/signup" className="text-[#D20606]">Sign up</a>
                         </div>
 
                     </div>

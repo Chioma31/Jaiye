@@ -87,7 +87,7 @@ const SignUp= ()=> {
                         
                         <div className="self-center flex flex-row my-16">
                             <p className="self-center px-1 text-[#868585]">Already have an account?</p>
-                            <a href="" className="text-[#D20606]">Log in</a>
+                            <a href="/login" className="text-[#D20606]">Log in</a>
                         </div>
 
                     </div>
