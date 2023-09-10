@@ -8,40 +8,43 @@ const SignUp= ()=> {
 
         <>
             <NavBar/>
-            <div className="h-[50px] w-[100vw]"></div>
-                <div className="lg:flex flex-row w-[100vw]">
-                    <div className="flex flex-col w-[100vw]  lg:flex-col flex-1 justify-center lg:w-[50%] lg:px-[120px]">
+
+                <div className="h-[45px] w-full"></div>
+
+                <div className="lg:flex flex-row w-full ">
+                    <div className="flex flex-col w-full flex-1 justify-center lg:px-[120px]">
                         <h1 className="self-center my-12 text-center font-[poppins] font-semibold text-6xl p-4 lg:self-start">Sign Up</h1>
+                        <div className="flex flex-col">
+                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                            type="name" 
+                            placeholder="First Name"
+                            ></input>
 
-                        <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                        type="name" 
-                        placeholder="First Name"
-                        ></input>
+                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                            type="name" 
+                            placeholder="Last Name"
+                            ></input>
 
-                        <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                        type="name" 
-                        placeholder="Last Name"
-                        ></input>
+                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                            type="number" 
+                            placeholder="Phone Number"
+                            ></input>
 
-                        <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                        type="number" 
-                        placeholder="Phone Number"
-                        ></input>
+                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                            type="email" 
+                            placeholder="Email address"
+                            ></input>
 
-                        <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                        type="email" 
-                        placeholder="Email address"
-                        ></input>
+                            <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
+                            type="password"
+                            placeholder="password"
+                            ></input>
 
-                        <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
-                        type="password"
-                        placeholder="password"
-                        ></input>
-
-                        <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
-                        type="password"
-                        placeholder="Confirm Password"
-                        ></input>
+                            <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
+                            type="password"
+                            placeholder="Confirm Password"
+                            ></input>
+                        </div>
 
 
                         <div className="flex flex-row mx-4 justify-between">
@@ -59,9 +62,9 @@ const SignUp= ()=> {
                             </a>
                         </button>
 
-                        <div className="flex flex-row justify-between w-[90%] ml-6">
+                        <div className="flex flex-row justify-between w-full px-14 ">
                             <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
-                            <p className="text-[#353434] txt-sm">OR</p>
+                            <p className="txt-[#353434] txt-sm ">OR</p>
                             <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
                         </div>
 
@@ -92,13 +95,10 @@ const SignUp= ()=> {
 
                     </div>
 
-                    <div className="hidden md:hidden lg:flex flex-col flex-1 w-[50%]">
-                        <img className="w-[100%] h-[100%]" 
-                        src="Jaiyelogin.png"
-                        />
-                    </div>
+                    <div className="hidden md:hidden lg:flex flex-col flex-1 bg-[url('/Jaiyelogin.png')] bg-cover"></div>
                 
                 </div>
+
             <Footer/>
         </>
     )

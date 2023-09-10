@@ -11,31 +11,33 @@ const Login= ()=>{
     return (
         <>
             <NavBar/>
-                <div className="h-[50px] w-[100vw]"></div>
-                <div className="lg:flex flex-row w-[100vw]">
-                    <div className="flex flex-col w-[100vw]   lg:flex-col flex-1 justify-center lg:w-[50%] lg:px-[120px]">
+                <div className="h-[45px] w-full"></div>
+                <div className="lg:flex flex-row w-full">
+                    <div className="flex flex-col w-full flex-1 justify-center lg:px-[120px]">
                         <h1 className="self-center my-12 text-center font-[poppins] font-semibold text-6xl p-4 lg:self-start">Log in</h1>
 
-                        <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                        type="email" 
-                        placeholder="Email address"
-                        ></input>
+                        <div className="flex flex-col h-fit w-full px-4">
+                            <input className="mx-4 mb-4 py-4 px-4 border border-[#AEAEAE]" 
+                            type="email" 
+                            placeholder="Email address"
+                            ></input>
 
-                        <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
-                        type="password"
-                        placeholder="password"
-                        ></input>
-
-                        <div className="flex flex-row mx-4 justify-between">
-                            <div className="flex flex-row">
-                            <input className="mx-2 "
-                            type="checkbox"></input>
-                            <p className="mx-0 text-[#353434]">Remember me</p>
+                            <input className="mx-4 px-4 py-4 mb-4 border border-[#AEAEAE] "
+                            type="password"
+                            placeholder="password"
+                            ></input>
                         </div>
 
-                        <p className="text-[#D20606]">
-                            <a href="">Forgot password?</a>
-                        </p>
+                        <div className="flex flex-row w-full px-8 justify-between">
+                            <div className="flex flex-row">
+                                <input className="mr-2 "
+                                type="checkbox"></input>
+                                <p className="mx-0 text-[#353434]">Remember me</p>
+                            </div>
+
+                            <p className="text-[#D20606]">
+                                <a href="">Forgot password?</a>
+                            </p>
                         
                         </div>
 
@@ -45,10 +47,10 @@ const Login= ()=>{
                             </a>
                         </button>
 
-                        <div className="flex flex-row justify-between w-[90%] ml-6">
-                            <div className="flex flex-row self-center w-[40%] h-[1px] border border-[#AEAEAE]"></div>
+                        <div className="flex flex-row justify-between w-full px-14 ">
+                            <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
                             <p className="txt-[#353434] txt-sm ">OR</p>
-                            <div className="flex flex-row self-center w-[40%] h-[1px] border border-[#AEAEAE]"></div>
+                            <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
                         </div>
                         
                         <button className=" bg-[#F8F7F7] border border-[#AEAEAE] w-[90%] self-center justify-center mt-14">
@@ -78,11 +80,7 @@ const Login= ()=>{
 
                     </div>
 
-                    <div className="hidden md:hidden lg:flex flex-col flex-1 w-[50%]">
-                        <img className="w-[100%] h-[100%]" 
-                        src="Jaiyelogin.png"
-                        />
-                    </div>
+                    <div className="hidden md:hidden lg:flex flex-col flex-1 bg-[url('/Jaiyelogin.png')] bg-cover w-full"></div>
                 
                 </div>
             <Footer/>
