@@ -43,7 +43,7 @@ function WebLandingPageViewbk2(props) {
   return (
     <>
       <NavBar />
-        <div className="h-[50px] "></div>
+        <div className="h-[45px]"></div>
         <div className="2xl:px-auto w-full h-screen ">
           {/* hero start */}
           <div className=" w-auto h-auto lg:bg-[url('/jaiye1.png')] bg-[url('/jaiye2.png')]  bg-cover  bg-no-repeat  bg-top">            
