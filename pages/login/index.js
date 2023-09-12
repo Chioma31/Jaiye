@@ -1,12 +1,27 @@
 import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
-import { BeakerIcon } from "@heroicons/react/24/outline";
-import Image from "../../public/Jaiyelogin.png";
+import axios from "axios";
+import { useState } from "react";
 
 
 
 
 const Login= ()=>{
+
+    const [ userEmail , setuserEmail ] = useState();
+    const [ password , setPassword ] = useState();
+
+    const handleLogin =()=> {
+
+            axios.post('https://tickeneft.onrender.com/api/users/login',{
+                
+                    "email":"johndoe@email.com",
+                    "password":"strongpassword123",
+                
+            })
+            .then(response =>{ console.log(response.data)})
+            .catch(err => {console.log(err)});
+    };
 
     return (
         <>
@@ -18,13 +33,17 @@ const Login= ()=>{
 
                         <div className="flex flex-col h-fit w-full px-4">
                             <input className="mx-4 mb-4 py-4 px-4 border border-[#AEAEAE]" 
-                            type="email" 
-                            placeholder="Email address"
+                                type="email" 
+                                placeholder="Email address"
+                                value={userEmail}
+                                onChange={(e)=> setuserEmail(e.target.value)}
                             ></input>
 
                             <input className="mx-4 px-4 py-4 mb-4 border border-[#AEAEAE] "
-                            type="password"
-                            placeholder="password"
+                                type="password"
+                                placeholder="password"
+                                value={password}
+                                onChange={(e)=> (setPassword(e.target.value))}
                             ></input>
                         </div>
 
@@ -41,10 +60,9 @@ const Login= ()=>{
                         
                         </div>
 
-                        <button className="bg-[#D20606] w-[90%] self-center my-12">
-                            <a href="">
+                        <button onClick={handleLogin}
+                                className="bg-[#D20606] w-[90%] self-center my-12">
                                 <p className="text-[#F8F7F7] text-sm px-2 py-2">Log in</p>
-                            </a>
                         </button>
 
                         <div className="flex flex-row justify-between w-full px-14 ">
