@@ -4,35 +4,80 @@ import axios from "axios";
 import { useState } from "react";
 
 
-const SignUp= ()=> {
+const SignUp =()=> {
 
 
-    const [ userEmail , setuserEmail ] = useState();
-    const [ firstname , setFirstname ] = useState();
-    const [ lastname , setLastname ]  = useState();
-    const [ number , setNumber ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ confirmpassword , setConfirmPassword] = useState();
+    const [ inputValue , setInputValue ] = useState(
+    
+    {
 
-
-    const handleSignUp =()=> {
-
-
-        axios.post('https://tickeneft.onrender.com/api/user/signup', {
-
-                "firstname": "John",
-                "lastname" : "Doe",
-                "email" : "johndoe@email.com",
-                "number" : "",
-                "password":"strongpassword123",
-                "confirmpassword":"strongpassword123",
-                
-            
-        })
+        "firstname" : "",
+        "lastname" : "",
+        "phone_no" : "",
+        "email" : "",
+        "password" : "",
+        "confirmpassword" : ""
         
-            .then(response =>{ console.log(response.data)})
-            .catch(err => {console.log(err)});
+    }
+
+    );
+
+    const [isChecked , setIsChecked] = useState(false);
+    const  checkBoxHandle =()=>{
+        setIsChecked(!isChecked);
     };
+   
+    const handleChange = (e) =>{
+        const { name, value} = e.target;
+        setInputValue({...inputValue, [name]: value})
+    };
+    
+
+
+    const handleSignUp = async (e) => {
+
+        e.preventDefault();
+
+        let minLength = 6;
+            
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+
+        if (!emailRegex.test(inputValue.email))
+            {console.error("Input a valid email address"); return;
+        }
+
+        if (inputValue.password < minLength)
+            {console.error("Minumum required length is 6"); return;
+        }
+
+        if (inputValue.password !== inputValue.confirmpassword)
+            {console.error("Password mismatch"); return;
+        }
+
+
+        if (!checkBoxHandle) 
+            {console.error("Agree to our terms and conditions"); return;
+        }
+    
+
+
+
+
+       try {
+            const response = await axios.post('https://tickeneft.onrender.com/api/user/signup', {...inputValue})
+            console.log("Sign-up successful:" , response.data);
+        
+        } catch (error) 
+            {console.log ("Sign-up failed:", error);
+        }
+    
+
+
+    };
+            
         
 
 
@@ -42,72 +87,84 @@ const SignUp= ()=> {
 
                 <div className="h-[45px] w-full"></div>
 
-                <div className="lg:flex flex-row w-full ">
-                    <div className="flex flex-col w-full flex-1 justify-center lg:px-[120px]">
+                <div className="lg:flex flex-row w-full">
+                    <div className="flex flex-col w-full flex-1 justify-center lg:px-28">
                         <h1 className="self-center my-12 text-center font-[poppins] font-semibold text-6xl p-4 lg:self-start">Sign Up</h1>
-                        <div className="flex flex-col">
-
-                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                                type="name" 
-                                placeholder="First Name"
-                                value={firstname}
-                                onChange={(e)=> setFirstname(e.target.value)}
-                            ></input>
-
-                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                                type="name" 
-                                placeholder="Last Name"
-                                value={lastname}
-                                onChange={(e)=> setLastname(e.target.value)}
-                            ></input>
-
-                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                                type="number" 
-                                placeholder="Phone Number"
-                                value={number}
-                                onChange={(e)=> setNumber(e.target.value)}
-                            ></input>
-
-                            <input className="mx-4 mb-4 px-4 py-4 border border-[#AEAEAE]" 
-                                type="email" 
-                                placeholder="Email address"
-                                value={userEmail}
-                                onChange={(e)=> setuserEmail(e.target.value)}
-                            ></input>
-
-                            <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
-                                type="password"
-                                placeholder="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            ></input>
-
-                            <input className="mx-4 px-4 mb-4 py-4 border border-[#AEAEAE] "
-                                type="password"
-                                placeholder="Confirm Password"
-                                value={confirmpassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            ></input>
-                        </div>
-
-
-                        <div className="flex flex-row mx-4 justify-between">
-                            <div className="flex flex-row">
-                            <input className="mx-2 "
-                            type="checkbox"></input>
-                            <p className="mx-0 text-[#D20606]">I agree to the terms and privacy policies.</p>
-                        </div>
                         
-                        </div>
+                        <form id="signup" onSubmit={handleSignUp}>
+                            
+                                <div className="flex flex-col justify-center px-4">
 
-                        <button onClick={handleSignUp}
-                                className="bg-[#D20606] w-[90%] self-center my-12">
-                                <p className="text-[#F8F7F7] text-sm px-2 py-2">Sign Up</p>
-                        </button>
+                                    <input className=" mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                                        type="name" 
+                                        name="firstname"
+                                        placeholder="First Name"
+                                        value={inputValue.firstname}
+                                        onChange={handleChange}
+                                    />
+
+                                    <input className="mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                                        type="name" 
+                                        name="lastname"
+                                        placeholder="Last Name"
+                                        value={inputValue.lastname}
+                                        onChange={handleChange}
+                                    />
+
+                                    <input className=" mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                                        type="number" 
+                                        name="phone_no"
+                                        placeholder="Phone Number"
+                                        value={inputValue.phone_no}
+                                        onChange={handleChange}
+                                    />
+
+                                    <input className="mb-4 px-4 py-4 border border-[#AEAEAE]" 
+                                        type="email" 
+                                        name="email"
+                                        placeholder="Email address"
+                                        value={inputValue.email}
+                                        onChange={handleChange}
+                                    />
+
+                                    <input className=" px-4 mb-4 py-4 border border-[#AEAEAE] "
+                                        type="password"
+                                        name="password"
+                                        placeholder="password"
+                                        value={inputValue.password}
+                                        onChange={handleChange}
+                                    />
+
+                                    <input className="px-4 mb-4 py-4 border border-[#AEAEAE] "
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                        name="confirmpassword"
+                                        value={inputValue.confirmpassword}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+
+                                <div className="flex flex-row mx-4 justify-between">
+                                    <div className="flex flex-row">
+                                    <input className="mx-2 " 
+                                        onChange={checkBoxHandle}
+                                        type="checkbox"/>
+                                    <p className="mx-0 text-[#D20606]">I agree to the terms and privacy policies.</p>
+                                </div>
+                            
+                            </div>
+                            <div className="px-4">
+                                <button type="submit"
+                                    className=" bg-[#D20606] w-full self-center my-12 px-2 py-2">
+                                    <p className="text-[#F8F7F7] text-sm ">Sign Up</p>
+                                </button>
+                            </div>
+                        </form>
 
                         <div className="flex flex-row justify-between w-full px-14 ">
                             <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
-                            <p className="txt-[#353434] txt-sm ">OR</p>
+                            <p className="text-[#353434] text-sm font-poppins">OR</p>
                             <div className="flex flex-row self-center w-[45%] h-[1px] border border-[#AEAEAE]"></div>
                         </div>
 
