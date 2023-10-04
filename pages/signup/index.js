@@ -1,3 +1,4 @@
+
 import NavBar from "../../components/navBar";
 import Footer from "../../components/footer";
 import axios from "axios";
@@ -6,23 +7,44 @@ import { useState } from "react";
 
 const SignUp =()=> {
 
-
     const [ inputValue , setInputValue ] = useState(
     
-    {
+        {
 
-        "firstname" : "",
-        "lastname" : "",
-        "phone_no" : "",
-        "email" : "",
-        "password" : "",
-        "confirmpassword" : ""
-        
-    }
-
+            "firstname" : "",
+            "lastname" : "",
+            "phone_no" : "",
+            "email" : "",
+            "password" : "",
+            "confirmpassword" : ""
+            
+        }
     );
 
+    const [errorCheck, setErrorCheck] = useState(
+        {
+
+            "firstname" : "",
+            "lastname" : "",
+            "phone_no" : "",
+            "email" : "",
+            "password" : "",
+            "confirmpassword" : ""
+            
+        }
+    );
+
+
+    
+    const [passRequirement , setPassRequirement] = useState(false);
+
+    const passRequired =()=>{ 
+        setPassRequirement(prevState => !prevState)}
+
+    const passwordCheck = passRequirement? "inline-block": "hidden"
+
     const [isChecked , setIsChecked] = useState(false);
+
     const  checkBoxHandle =()=>{
         setIsChecked(!isChecked);
     };
@@ -31,7 +53,6 @@ const SignUp =()=> {
         const { name, value} = e.target;
         setInputValue({...inputValue, [name]: value})
     };
-    
 
 
     const handleSignUp = async (e) => {
@@ -40,7 +61,7 @@ const SignUp =()=> {
 
         let minLength = 6;
             
-        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
@@ -52,17 +73,23 @@ const SignUp =()=> {
         if (inputValue.password < minLength)
             {console.error("Minumum required length is 6"); return;
         }
-
+        if (!passwordRegex.test(inputValue.password))
+            {console.error("password does not meet requirements")}
+        
         if (inputValue.password !== inputValue.confirmpassword)
             {console.error("Password mismatch"); return;
         }
-
 
         if (!checkBoxHandle) 
             {console.error("Agree to our terms and conditions"); return;
         }
     
-
+        for (const key in object) {
+            if (!inputValue[key]) 
+            setErrorCheck(prevState => ({...prevState, 
+                [key] :`${key} is required`
+            }))
+        }
 
 
 
@@ -127,7 +154,15 @@ const SignUp =()=> {
                                         onChange={handleChange}
                                     />
 
-                                    <input className=" px-4 mb-4 py-4 border border-[#AEAEAE] "
+                                    {/*<div className={`${passwordCheck} w-fit text-left`}>
+                                        <p className="text-xs font-normal text-[#D20606]">*Minimum character of 6</p>
+                                        <p className="text-xs font-normal text-[#D20606]">*Atleast one uppercase character</p>
+                                        <p className="text-xs font-normal text-[#D20606]">*Atleast one lowercase character</p>
+                                        <p className="text-xs font-normal text-[#D20606]">*Atleast one number</p>
+                                        <p className="text-xs font-normal text-[#D20606]">*Atleast one symbol</p>
+                                    </div>*/}
+
+                                    <input onClick={passRequired} className=" px-4 mb-4 py-4 border border-[#AEAEAE] "
                                         type="password"
                                         name="password"
                                         placeholder="password"
