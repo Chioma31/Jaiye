@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useState,Fragment } from 'react';
@@ -32,9 +32,19 @@ function NavBar () {
 
   return (
     <div className="px-6 py-3  2xl:px-28 top-0 z-40 fixed bg-black   w-full">
-      <nav className="flex h-9 items-center   justify-between" aria-label="Global">
+      <nav className="flex h-12 items-center   justify-between" aria-label="Global">
         <div className="flex py-2" aria-label="Global">
-          <a href="/" className="flex ">
+          <a href="/" className="lg:hidden block ">
+            <Image
+              className=" "
+              height={80}
+              width={60}
+              src="/jaiye.png"
+              alt=" Logo"
+            />
+
+          </a>
+          <a href="/" className="hidden lg:block ">
             <Image
               className=" "
               height={80}
@@ -45,52 +55,93 @@ function NavBar () {
 
           </a>
         </div>
-        <div className="flex justify-center my-4 px-6 ">
-          <div className="relative ">
-              <div className="text-[#353434] absolute ml-4 inset-0 m-auto w-4 h-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width={16} height={16} viewBox="0 0 24 24" strokeWidth={1} stroke="#A0AEC0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <div className=" flex-1 my-4 px-6 ">
+          <div className="hidden lg:flex  xl:gap-8 lg:gap-6 gap-2 items-center  bg-[#353434] rounded-sm">
+              <div className="text-[#353434]  ml-4 inset-0 m-auto w-4 h-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search"     width={16} height={16} viewBox="0 0 24 24" strokeWidth={1} stroke="#A0AEC0" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" />
                       <circle cx={10} cy={10} r={7} />
                       <line x1={21} y1={21} x2={15} y2={15} />
                   </svg>
               </div>
-              <input className="bg-[#353434] focus:outline-none rounded-sm w-40  2xl:w-96 text-sm text-white  pl-10 py-2" type="text" placeholder="Search Event" />
+              <input 
+                className="bg-[#353434] w-full
+                focus:outline-none rounded-sm   
+                 text-sm text-white   py-3" 
+                type="text" 
+                placeholder="Search Event"
+             />
+          </div>
+          <div className="lg:hidden flex gap-2 items-center  bg-[#353434] rounded-sm">
+              <div className="text-[#353434]  ml-3 inset-0 m-auto w-3 h-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search"     width={16} height={16} viewBox="0 0 24 24" strokeWidth={1} stroke="#A0AEC0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <circle cx={10} cy={10} r={7} />
+                      <line x1={21} y1={21} x2={15} y2={15} />
+                  </svg>
+              </div>
+              <input 
+                className="bg-[#353434] w-full
+                focus:outline-none rounded-sm   
+                 text-sm text-white   py-2" 
+                type="text" 
+                placeholder="Search"
+             />
           </div>
         </div>
-        <div className="flex lg:hidden">
-          {/* <button
-          className="flex flex-col h-12 w-12 border-2 border-black rounded justify-center items-center group"
-          onClick={() => setIsOpen(!isOpen)}
-          >
-          <div  onClick={() => setMobileMenuOpen(true)}>
-            <div className={`${genericHamburgerLine} ${
-              isOpen
-                  ? " rotate-45 translate-y-3  group-hover:opacity-100"
-                  : " group-hover:opacity-100"
-              }`}
-            />
-            <div className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : " group-hover:opacity-100"}`} />
-            <div className={`${genericHamburgerLine} ${
-              isOpen
-                  ? "-rotate-45 -translate-y-3  group-hover:opacity-100"
-                  : " group-hover:opacity-100"
-              }`}
-            />
-          </div>
-          
-          </button> */}
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <div className='text-black' onClick={handleOpening}>
+        {/* 
+          <div className='text-black' onClick={handleOpening}>
               {mobileMenuOpen
-            ? (<XMarkIcon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />)
-            : (<Bars3Icon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />)}
-          </div>
-          </button>
+            ? (<XMarkIcon className="lg:h-18 lg:w-10 w-9 h-11 text-[#AEAEAE] font-bold" aria-hidden="true" />)
+            : (<Bars3Icon className="lg:h-18 lg:w-10 w-9 h-11 text-[#AEAEAE] font-bold" aria-hidden="true" />)}
+          </div> 
+        */}
+        <div className="flex items-center lg:hidden">
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <Menu.Button className="flex items-center  text-gray-400 hover:text-gray-600 ">
+                <span className="sr-only">Open options</span>
+                <Bars3Icon className="lg:h-18 hover:text-[#D20606]  lg:w-10 w-9 h-11 text-[#AEAEAE] font-bold" aria-hidden="true" />
+              </Menu.Button>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-[#535151] text-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
+                  {navigation.map((item) => (
+                    <Menu.Item key={item.name}>
+                      {({ active }) => (
+                        <Link 
+                          href={item.href}
+                          className={`
+                          ${
+                            active ? 'text-[#D20606]' : 'text-white'
+                          } 
+                          block px-4 py-2 text-sm text-white hover:bg-[#D20606]`
+                        }
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
+                  <Menu.Item >
+                    <Link href="/signup" className="bg-[#D20606]  block sm:hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Sign Up</Link> 
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+
+          <Link href="/signup" className="bg-[#D20606]  sm:block hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Sign Up</Link>
         </div>
 
         <div className="hidden font-normal lg:flex text-lg lg:min-w-0 space-x-8">
@@ -111,91 +162,6 @@ function NavBar () {
           <Link href="/signup" className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">Sign Up</Link>
         </div>
       </nav>
-      <Transition.Root show={mobileMenuOpen} as={Fragment}>
-        <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-          <Dialog.Panel focus="true" className="fixed inset-0 z-10 ml-24 overflow-y-auto bg-[#fefefe] px-6 py-6 xl:hidden">
-          <Transition.Child
-            enter="ease-in-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in-out duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="flex h-9 items-center justify-between">
-              <div className="flex">
-                <a href="#" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Your Company</span>
-                  {/* <Image
-                    className="h-16"
-                    height={80}
-                    width={160}
-                    src="/jaiye.png"
-                    alt=" Logo"
-                  /> */}
-                </a>
-              </div>
-              <div className="flex">
-                {/* <button
-                  type="button"
-                  className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                   onClick={() => setIsOpen(!isOpen)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <div onClick={() => setMobileMenuOpen(false)} >
-                    <div className={`${genericHamburgerLine} ${
-                      isOpen
-                          ? "rotate-45 translate-y-3  group-hover:opacity-100"
-                          : " group-hover:opacity-100"
-                      }`}
-                    />
-                    <div className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : " group-hover:opacity-100"}`} />
-                    <div className={`${genericHamburgerLine} ${
-                      isOpen
-                          ? "-rotate-45 -translate-y-3  group-hover:opacity-100"
-                          : " group-hover:opacity-100"
-                      }`}
-                    />
-                  </div>
-                </button> */}
-                <button
-                  type="button"
-                  className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="sr-only">Open main menu</span>
-                  <div className='text-black' onClick={handleOpening} >
-                    <XMarkIcon className="h-18 w-10 text-[#fefefe]" aria-hidden="true" />
-                  </div>
-                </button>
-              </div>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      activeClass="active"
-                      to={item.to}
-                      spy
-                      smooth
-                      offset={-100}
-                      duration={900}
-                      className="-mx-3 block rounded-lg py-2 px-3 text-3xl font-medium leading-7 text-primary hover:bg-gray-400/10"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-
-              </div>
-            </div>
-          </Transition.Child>
-          </Dialog.Panel>
-        </Dialog>
-    </Transition.Root>
       
     </div> 
   )
@@ -204,4 +170,4 @@ function NavBar () {
 export default NavBar
 
 
-
+    

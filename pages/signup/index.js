@@ -39,7 +39,8 @@ const SignUp =()=> {
     const [passRequirement , setPassRequirement] = useState(false);
 
     const passRequired =()=>{ 
-        setPassRequirement(prevState => !prevState)}
+        setPassRequirement(prevState => !prevState)
+    }
 
     const passwordCheck = passRequirement? "inline-block": "hidden"
 
@@ -84,7 +85,7 @@ const SignUp =()=> {
             {console.error("Agree to our terms and conditions"); return;
         }
     
-        for (const key in object) {
+        for (const key in inputValue) {
             if (!inputValue[key]) 
             setErrorCheck(prevState => ({...prevState, 
                 [key] :`${key} is required`
