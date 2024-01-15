@@ -11,7 +11,7 @@
 }
 
 .required{
-  @apply text-red-500 text-xs italic;
+  @apply text-red-500 text-sm italic mb-2;
 }
 
 .main{
