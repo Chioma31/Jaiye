@@ -13,76 +13,67 @@ const Info = (props) => {
         <div className="space-y-12 ">
           <div className="border-b border-gray-900/10 pb-12">
 
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <div className="sm:col-span-1  col-span-6">
-                <label  className="block text-sm font-medium leading-6 text-gray-900">
-                  Event Title
+            <div className="mt-10 flex flex-col gap-6 ">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-6">
+                <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                  Event Title :
                 </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      autoComplete="username"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="Title"
-                    />
-                  </div>
+                <div className="flex py-1.5 px-1 flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    autoComplete="username"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="Title"
+                  />
                 </div>
               </div>
-              <div className="sm:col-span-1 col-span-6">
-                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                  Organizer
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5 w-full poppins col-span-6">
+                <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                  Organizer :
                 </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      autoComplete="username"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="Title"
-                    />
-                  </div>
+                <div className="flex py-1.5 px-1 flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    autoComplete="username"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="Title"
+                  />
                 </div>
               </div>
-              <div className="sm:col-span-1 col-span-6">
-                <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">
-                  Type
-                </label>
-                <div className="mt-2">
+              <div className=" flex lg:pl-[99px] w-full poppins mt-3 items-center gap-10 sm:gap-20 justify-between">
+                <div className="w-full">
                   <select
                     id=""
                     name=""
                     autoComplete="name"
-                    className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                    className="block w-full rounded-sm border-0 py-3 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
                   >
+                    <option>Type</option>
+                    <option>Entertainment</option>
+                    <option>Music</option>
+                    <option>Dance</option>
+                  </select>
+                </div>
+                <div className="w-full">
+                  <select
+                    id=""
+                    name=""
+                    autoComplete="name"
+                    className="block w-full rounded-sm border-0 py-3 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                  >
+                    <option>Category</option>
                     <option>Entertainment</option>
                     <option>Music</option>
                     <option>Dance</option>
                   </select>
                 </div>
               </div>
-              <div className="sm:col-span-1 col-span-6">
-                <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">
-                  Category
-                </label>
-                <div className="mt-2">
-                  <select
-                    id=""
-                    name=""
-                    autoComplete="name"
-                    className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
-                  >
-                    <option>Entertainment</option>
-                    <option>Music</option>
-                    <option>Dance</option>
-                  </select>
-                </div>
-              </div>
-              <div className="sm:col-span-1 col-span-6">
+            
+              <div className=" col-span-6">
                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                   Tags
                 </label>

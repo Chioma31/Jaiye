@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Error, Successful } from "../../components/notification";
 import Loader from "../../components/loader";
+import { useRouter } from "next/router";
 
 
 const SignUp =()=> {
@@ -44,6 +45,8 @@ const SignUp =()=> {
     );
 
     const [isChecked , setIsChecked] = useState(false);
+
+    const router = useRouter();
 
     const  checkBoxHandle =()=>{
         setIsChecked(!isChecked);
@@ -131,14 +134,14 @@ const SignUp =()=> {
           setIsSignUpSuccessful(response.data.msg);
           setSignUpSuccessful(true);
           setIsLoading(false);
-          
+          router.push('/login');         
         } catch (error) {
             console.log("Sign-up failed:", error.response.data);
             setHasSignUpError(error.response.data.msg);
             setSignUpError(true)
             setIsLoading(false);
         }
-      };
+    };
       
             
         

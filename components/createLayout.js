@@ -155,7 +155,7 @@ export default function CreateLayout(props) {
         <div className="py-10">
           <header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-5xl font-bold leading-tight tracking-tight text-gray-900">{props.title}</h1>
+              <h1 className="text-[60px] font-bold font-poppins poppins leading-tight tracking-tight text-gray-900">{props.title}</h1>
             </div>
           </header>
           <main>
