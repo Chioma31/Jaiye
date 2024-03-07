@@ -1,14 +1,16 @@
 
-import NavBar from "../../components/navBar";
-import Footer from "../../components/footer";
-import { useState } from "react";
+import NavBar from "../../../components/navBar";
+import Footer from "../../../components/footer";
+import React, { useState } from "react";
 import Calendar from 'react-calendar'; 
+
 import Image from "next/image";
-import 'react-calendar/dist/Calendar.css';
 import { ArrowRightIcon, } from "@heroicons/react/24/outline";
 import {PiNotePencilDuotone, PiCaretDownBold} from 'react-icons/pi';
 import {RxTrash} from 'react-icons/rx';
 import { TbCurrencyNaira } from "react-icons/tb";
+
+
 
 
 
@@ -118,6 +120,27 @@ const AdminDashboard =()=> {
             amount: 1001,
         },
     ])
+
+    const [pendingAmount, setPendingAmount] = useState('60')
+
+    const [tableData, setTableData] = useState([
+        {
+            id: 1, 
+            order: 23658,
+            buyer: 'John Etim',
+            Quantity: 2,
+            Price: 1200,
+            Date: 'May 22, 2023'
+        },
+        {
+            id: 2, 
+            order: 23659,
+            buyer: 'John Etim',
+            Quantity: 2,
+            Price: 1200,
+            Date: 'May 22, 2023'
+        },
+    ])
     
 
     return (
@@ -125,7 +148,7 @@ const AdminDashboard =()=> {
             <NavBar />
             <div className="h-[72px] w-full"/>
             <div className="flex flex-col w-full py-10 px-3 gap-3">
-                <div className="flex w-full gap-2">
+                <div className="flex w-full h-[144px] gap-2">
                     <div className="flex flex-col w-full gap-1.5 shadow-md px-2 pt-2 pb-4">
                         <div className=" font-poppins font-medium text-sm text-black">
                             Users
@@ -157,12 +180,13 @@ const AdminDashboard =()=> {
                             </div>
                         </div>
                     </div>
-                    <div className="flex w-full shadow-md py-1 px-1.5">
+                    <div className="flex w-1/2 shadow-md py-1 px-1.5">
                         <div className="flex w-full h-full">
-                            {/* <Calendar
+                            <Calendar
                                 onChange={CurrentDate} 
                                 value={calendarValue} 
-                            />  */}
+                                className="!border-none !w-full !max-h-full"
+                            />
                         </div>
                     </div>
                 </div>
@@ -207,12 +231,26 @@ const AdminDashboard =()=> {
                 </div>
                 <div className="flex w-full gap-2">
                     <div className="flex flex-col w-full gap-2">
-                        <div className="flex flex-col h-[70%] shadow-md p-2">
+                        <div className="flex flex-col h-[75%] shadow-md p-2">
                             <div className="font-poppins font-medium text-sm text-black">
                                 Quick Stats
                             </div>
+                                
+                            <div className="flex flex-col w-full gap-1">
+                                <div className="flex w-full items-center justify-between">
+                                    <div className="font-poppins font-normal text-xs text-black">
+                                        Pending amount
+                                    </div>
+                                    <div className="font-poppins font-normal text-xs text-black">
+                                        {pendingAmount}%
+                                    </div>
+                                </div>
+                                <div className="flex w-full h-[18px] bg-[#EEEBEB] rounded-[4px]">
+                                    <div className={`bg-[#D20606] flex h-full rounded-[4px]`} style={{width:`${pendingAmount}%`}} />
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col w-full gap-3 h-[30%] shadow-md p-2">
+                        <div className="flex flex-col w-full gap-2 h-[25%] shadow-md p-2">
                             <div className="flex w-full justify-between">
                                 <div className="font-poppins font-medium text-sm text-black">
                                     Net sales
@@ -226,9 +264,9 @@ const AdminDashboard =()=> {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col w-full gap-2.5">
+                            <div className="flex flex-col w-full gap-1">
                                 {netSales.map((netSale)=> (
-                                    <div className="flex items-center gap-3" key={netSale.id}>
+                                    <div className="flex w-full items-center gap-2" key={netSale.id}>
                                         <div className="w-[40%] font-poppins font-normal text-xs text-black">
                                             {netSale.parameter}
                                         </div>
@@ -274,6 +312,38 @@ const AdminDashboard =()=> {
                             ))}
                         </div>
                     </div>
+                </div>
+                <div className="flex flex-col w-full gap-1.5 shadow-md px-2">
+                    <table className="table-auto w-full ">
+                        <thead className="">
+                            <th className="font-poppins font-medium text-xs text-black border-collapse border border-black">ORDER #</th>
+                            <th className="font-poppins font-medium text-xs text-black border-collapse border border-black">TICKET BUYER</th>
+                            <th className="font-poppins font-medium text-xs text-black border-collapse border border-black">QUANTITY</th>
+                            <th className="font-poppins font-medium text-xs text-black border-collapse border border-black">PRICE</th>
+                            <th className="font-poppins font-medium text-xs text-black border-collapse border border-black">DATE</th>
+                        </thead>
+                        <tbody>
+                            {tableData.map((table)=>(
+                                <tr className="border-collapse border border-black" key={table.id}>
+                                    <td className="font-poppins font-normal text-xs text-black border-collapse border border-black">
+                                        {table.order}
+                                    </td>
+                                    <td className="font-poppins font-normal text-xs text-black border-collapse border border-black">
+                                        {table.buyer}
+                                    </td>
+                                    <td className="font-poppins font-normal text-xs text-black border-collapse border border-black">
+                                        {table.Quantity}
+                                    </td>
+                                    <td className="font-poppins font-normal text-xs text-black border-collapse border border-black">
+                                        {table.Price}
+                                    </td>
+                                    <td className="font-poppins font-normal text-xs text-black border-collapse border border-black">
+                                        {table.Date}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <Footer/>

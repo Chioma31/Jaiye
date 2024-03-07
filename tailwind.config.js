@@ -3,6 +3,10 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'poppins':['Poppins','san-serif'],
+        'inter':['Inter','sans-serif']
+      },
       colors: {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
