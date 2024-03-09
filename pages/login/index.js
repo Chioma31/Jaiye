@@ -29,7 +29,7 @@ const Login =()=>{
     useEffect(() => {
         const isLoggedIn = checkLoginStatus();
         if (isLoggedIn) {
-            router.push('/dashboard'); // Redirect to dashboard if user is already logged in
+            router.push('/dashboard/organiser'); // Redirect to dashboard if user is already logged in
         }
     }, []);
 
@@ -92,7 +92,7 @@ const Login =()=>{
                 localStorage.setItem('isLoggedIn', true);
             }
 
-            router.push('/');
+            router.push('/dashboard/organiser');
         
         } catch (error) 
             {console.log ("Login failed:", error);
