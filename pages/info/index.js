@@ -16,6 +16,24 @@ const Info = (props) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
 
+  const [location, setLocation] = useState("venue");
+  const [current, setCurrent] = useState(false);
+
+
+  const [locationTags, setLocationTags] = useState([
+    {
+      tag: "venue",
+      current: true
+    },
+    {
+      tag: "online event",
+      current: false
+    },
+    {
+      tag: "To be announced",
+      current: false
+    }
+  ]);
 
   const mapStyles = {
     height: "400px",
@@ -39,6 +57,16 @@ const Info = (props) => {
       console.error('Geolocation is not supported by this browser.');
     }
   }, []);
+
+  const handleButtonClick = (event, clickedTag) => {
+    event.preventDefault();
+    const updatedTags = locationTags.map(tag => ({
+      ...tag,
+      current: tag.tag === clickedTag ? true : false
+    }));
+    setLocationTags(updatedTags);
+    setLocation(clickedTag);
+  };
 
 
   // Handle search input change
@@ -182,97 +210,202 @@ const Info = (props) => {
         </div>
         <div className="py-10 poppins">
           <div className="mx-auto max-w-7xl  ">
-            <div className="text-3xl font-bold text-gray-900">Location</div>
+            <div className="text-[50px] font-[600] text-gray-900">Location</div>
           </div>
           <div className="text-sm py-3 font-normal mb-6 text-[#858585]">Help people discover your event and attendees know where to show up</div>
           <div className="flex lg:flex-row flex-col lg:items-center gap-8">
-            <button
-              type="submit"
-              className="rounded-[4px] col-span-1 px-3 py-1 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#D20606] focus:ring-offset-2"
-              >
-              Venue
-            </button>
-            <button
-              type="submit"
-              className="rounded-[4px] col-span-1 px-3 py-1 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#D20606] focus:ring-offset-2"
-              >
-              Online event
-            </button>
-            <button
-              type="submit"
-              className="rounded-[4px] col-span-1 px-3 py-1 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#D20606] focus:ring-offset-2"
-              >
-              To be announced
-            </button>
+            {locationTags.map(( tag)=>(  
+              <button
+                key={tag}
+                onClick={(event) => handleButtonClick(event, tag.tag)}
+                className={`rounded-[4px] col-span-1 px-3 py-1 hover:bg-[#D20606] hover:text-white  border  border-[#AEAEAE] 
+                ${tag.current ? 'border-[#D20606] text-black' : 'bg-white text-black'} 
+                `}
+                >
+                {tag.tag}
+              </button>
+            ))}
           </div>
 
           {/* venue */}
-          <div className="mt-10">
-            <div className="text-[18px] font-[500] mb-3 text-black">Venue location</div>
+          {location === "venue" ? 
+            <div className="mt-10">
+              <div className="text-[18px] font-[500] mb-3 text-black">Venue location</div>
 
-            <LoadScript
-              googleMapsApiKey="AIzaSyDW9riJPIZV1bh7EY2moNyx0d4nbnO_rO4"
-            >
-
-              <form onSubmit={handleFormSubmit} className="flex items-center gap-6 mb-8">
-                  <div className=" lg:w-[50%] w-full flex lg:gap-4 gap-2 items-center border border-gray-300  bg-white rounded-sm">
-                      <div className="text-[#353434]  ml-4 inset-0 m-auto w-4 h-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search"     width={16} height={16} viewBox="0 0 24 24" strokeWidth={1} stroke="#A0AEC0" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <circle cx={10} cy={10} r={7} />
-                              <line x1={21} y1={21} x2={15} y2={15} />
-                          </svg>
-                      </div>
-                      <input 
-                        className="bg-white w-full
-                        focus:outline-none rounded-sm   
-                        text-sm text-black   py-3" 
-                        type="text"
-                        value={searchInput} 
-                        onChange={handleSearchInputChange}
-                        placeholder="Search Event"
-                      />
-                  </div>
-                  <button
-                    type="submit"
-                    onClick={handleFormSubmit}
-                    className="rounded-[4px] col-span-1 px-7 py-2 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border border-black text-black hover:border-[#D20606] focus:ring-offset-2"
-                    >
-                    Search
-                  </button>
-   
-              </form>
-              <GoogleMap
-                mapContainerStyle={mapStyles}
-                zoom={10}
-                center={currentLocation || { lat: 9.0820, lng: 8.6753 }} 
-                onLoad={(map) => setMap(map)}
+              <LoadScript
+                googleMapsApiKey="AIzaSyDW9riJPIZV1bh7EY2moNyx0d4nbnO_rO4"
               >
-                {/* Display marker for selected location */}
-                {selectedLocation && (
-                  <Marker
-                    position={selectedLocation}
-                    onClick={handleMarkerClick}
-                  />
-                )}
-              </GoogleMap>
+
+                <form onSubmit={handleFormSubmit} className="flex items-center gap-6 mb-8">
+                    <div className=" lg:w-[50%] w-full flex lg:gap-4 gap-2 items-center border border-gray-300  bg-white rounded-sm">
+                        <div className="text-[#353434]  ml-4 inset-0 m-auto w-4 h-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search"     width={16} height={16} viewBox="0 0 24 24" strokeWidth={1} stroke="#A0AEC0" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <circle cx={10} cy={10} r={7} />
+                                <line x1={21} y1={21} x2={15} y2={15} />
+                            </svg>
+                        </div>
+                        <input 
+                          className="bg-white w-full
+                          focus:outline-none rounded-sm   
+                          text-sm text-black   py-3" 
+                          type="text"
+                          value={searchInput} 
+                          onChange={handleSearchInputChange}
+                          placeholder="Search Event"
+                        />
+                    </div>
+                    <button
+                      type="submit"
+                      onClick={handleFormSubmit}
+                      className="rounded-[4px] col-span-1 px-7 py-2 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border border-black text-black hover:border-[#D20606] focus:ring-offset-2"
+                      >
+                      Search
+                    </button>
+    
+                </form>
+                <GoogleMap
+                  mapContainerStyle={mapStyles}
+                  zoom={10}
+                  center={currentLocation || { lat: 9.0820, lng: 8.6753 }} 
+                  onLoad={(map) => setMap(map)}
+                >
+                  {/* Display marker for selected location */}
+                  {selectedLocation && (
+                    <Marker
+                      position={selectedLocation}
+                      onClick={handleMarkerClick}
+                    />
+                  )}
+                </GoogleMap>
+                
+              </LoadScript>
+
+
+            </div>     
+          
+            : location === "online event" ?
+            <div className="flex flex-1 mt-8 rounded-sm shadow-sm ring-1 col-span-3 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+              <input
+                type="text"
+                name=""
+                id=""
+                autoComplete="username"
+                className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                placeholder="Embed link "
+              />
+            </div>
+
+            :
+            <div className="py-10 poppins">
+              <div className="mx-auto max-w-7xl  ">
+                <div className="text-[50px] font-[600] text-gray-900">Date and time</div>
+              </div>
+              <div className="text-sm py-3 font-normal mb-6 text-[#858585]">create time for the event</div>
+              <div className="flex lg:flex-row flex-col lg:items-center gap-8">
+                <button
+                  type="submit"
+                  className="rounded-[4px] col-span-1 px-5 py-2 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#AEAEAE] focus:ring-offset-2"
+                  >
+                  Single Event
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-[4px] col-span-1 px-5 py-2 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#AEAEAE] focus:ring-offset-2"
+                  >
+                  recurring event
+                </button>
+                
+              </div>
+
+              <div className=" mt-8 grid grid-cols-2 gap-8">
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                    Event starts :
+                  </label>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="date"
+                      name=""
+                      id=""
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
+                  </div>
+                </div>
+            
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                    Start time: 
+                  </label>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="time"
+                      name=""
+                      id=""
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                    Event ends:
+                  </label>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="date"
+                      name=""
+                      id=""
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                    End time:
+                  </label>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="time"
+                      name=""
+                      id=""
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
+                  </div>
+                </div>
+
+              </div>
               
-            </LoadScript>
+              <div className=" flex items-center gap-3 mt-8">
+                <input
+                  type="checkbox" 
+                  className=" accent-[#248227] w-8 h-8"
+                />
+                <div>
+                  <div className=" font-[400] text-[14px] ">Display start time</div>
+                  <div className=" font-[400] text-[14px] text-[#858585] ">The start time of the event would be displayed on the platform</div>
+                </div>
+              </div>
+              <div className=" flex items-center gap-3 mt-3">
+                <input
+                  type="checkbox" 
+                  className=" accent-[#248227] w-8 h-8"
+                />
+                <div>
+                  <div className=" font-[400] text-[14px] ">Display end time</div>
+                  <div className=" font-[400] text-[14px] text-[#858585] ">The end time of the event would be displayed on the platform</div>
+                </div>
+              </div>
 
-
-          </div>     
-        </div>
-
-        {/* online event */}
-        <div className="flex flex-1 rounded-sm shadow-sm ring-1 col-span-3 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
-          <input
-            type="text"
-            name=""
-            id=""
-            autoComplete="username"
-            className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            placeholder="Embed link "
-          />
+                
+            </div>
+          }
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">

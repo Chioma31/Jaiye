@@ -1,169 +1,193 @@
 import Image from "next/image"
 import Link from "next/link"
 import CreateLayout from "../../components/createLayout"
+import { useState } from "react"
 
 
 const Ticket = (props) => {
+
+  const [current , setCurrent]= useState(null)
+
+  const [ticketSections, setTicketSections] = useState([{ id: 1 }]);
+
+  const handleAddTicketSection = () => {
+    const newId = ticketSections.length + 1;
+    setTicketSections([...ticketSections, { id: newId }]);
+  };
+
+  const handleCurrent = (e, tag) =>{
+    e.preventDefault()
+    setCurrent(tag)
+  }
+
   return(
     <>
       <CreateLayout title="Ticket">
         <div className="px-6 lg:px-1 mt-8">
           <div className="flex lg:flex-row flex-col lg:items-center gap-10">
             <button
-              type="submit"
-              className="rounded-[4px] col-span-1 px-8 py-1 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#D20606] focus:ring-offset-2"
+              onClick={(e)=> handleCurrent(e, "paid")}
+              className={`rounded-[4px] col-span-1 px-9 py-1.5 hover:bg-[#D20606] hover:text-white  border  border-[#AEAEAE] 
+                ${current === "paid" ? 'border-[#D20606] text-black' : 'bg-white text-black'} 
+                `}
               >
               Paid
             </button>
             <button
-              type="submit"
-              className="rounded-[4px] col-span-1 px-8 py-1 hover:bg-[#D20606] hover:text-white bg-white focus:outline-none focus:ring-2 border text-black border-[#D20606] focus:ring-offset-2"
+              onClick={(e)=> handleCurrent(e, "free")}
+              className={`rounded-[4px] col-span-1 px-9 py-1.5 hover:bg-[#D20606] hover:text-white  border  border-[#AEAEAE] 
+                ${current === "free" ? 'border-[#D20606] text-black' : 'bg-white text-black'} 
+                `}
               >
               Free
             </button>
           </div>
+
           <div className="space-y-12 ">
             <div className="border-b border-gray-900/10 pb-12">
 
-              <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                <div className="sm:col-span-1  col-span-6">
-                  <label  className="block text-sm font-medium leading-6 text-gray-900">
-                    Name
+              <div className="mt-10 flex flex-col gap-6 ">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-6">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                  Name:
                   </label>
-                  <div className="mt-2">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent  py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="name"
-                      />
-                    </div>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      autoComplete="username"
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
                   </div>
                 </div>
-                <div className="sm:col-span-1 col-span-6">
-                  <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                    Avalable Quantity
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5 w-full poppins col-span-6">
+                  <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                  Available quantity:
                   </label>
-                  <div className="mt-2">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
-                      <input
-                        type="number"
-                        name=""
-                        id=""
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="avalable quantity"
-                      />
-                    </div>
+                  <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      autoComplete="username"
+                      className="block flex-1 border-0 bg-transparent py-2.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="Title"
+                    />
                   </div>
                 </div>
-                <div className="sm:col-span-1 col-span-6">
-                  <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">
-                    Ticket Type
-                  </label>
-                  <div className="mt-2">
+
+                
+                  <div className=" w-[65%]">
+                    {ticketSections.map((section, index) => (
+                      <div  id={`ticket${section.id}`} className=" grid grid-cols-2 w-full gap-32 mt-3">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                          <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                            Ticket type:
+                          </label>
+                          <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                            <select
+                              id={`ticket${section.id}_type`}
+                              name=""
+                              autoComplete="name"
+                              className="block w-full bg-white rounded-sm border-0 py-4 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                            >
+                              <option></option>
+                              <option>Entertainment</option>
+                              <option>Music</option>
+                              <option>Dance</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="  w-full col-span-1">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-4  poppins ">
+                            <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
+                              Price:
+                            </label>
+                            <div className="flex flex-1 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-1 focus-within:ring-inset focus-within:ring-[#333333] ">
+                              <input
+                                type="number"
+                                name=""
+                                id={`ticket${section.id}_price`}
+                                autoComplete="username"
+                                className="block flex-1 border-0 bg-transparent py-3 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="$"
+                              />
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    ))}
+                    <div 
+                      onClick={handleAddTicketSection} 
+                      className=" cursor-pointer text-right  font-[400] text-[#D20606] text-[14px] mt-3"
+                    >
+                      Other ticket types
+                    </div>
+                  </div>
+                
+
+                <div className=" flex items-center gap-3 mt-4">
+                  <input
+                    type="checkbox" 
+                    className=" accent-[#248227] w-8 h-8"
+                  />
+                  <div>
+                  <div className=" font-[400] text-[14px] ">Show ticket sale end dates and sale status at checkout</div>
+                  </div>
+                </div>
+                <div className=" font-[400] text-[14px] mt-3">Ticket sales per day</div>
+                <div className=" grid grid-cols-6 w-full poppins  items-center gap-10 sm:gap-20 justify-between">
+                  <div className="col-span-2">
                     <select
                       id=""
                       name=""
                       autoComplete="name"
-                      className="block w-full rounded-md border-0 py-[10px] px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                      className="block w-full bg-white rounded-sm border-0 mr-3 py-5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
                     >
+                      <option>Minimum</option>
+                      <option>Entertainment</option>
+                      <option>Music</option>
+                      <option>Dance</option>
+                    </select>
+                  </div>
+                  <div className="col-span-2">
+                    <select
+                      id=""
+                      name=""
+                      autoComplete="name"
+                      className="block w-full bg-white rounded-sm border-0 py-5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                    >
+                      <option>Maximum</option>
                       <option>Entertainment</option>
                       <option>Music</option>
                       <option>Dance</option>
                     </select>
                   </div>
                 </div>
-                <div className="sm:col-span-1 col-span-6">
-                  <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                    Price
-                  </label>
-                  <div className="mt-2">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300  ">
-                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">$</span>
-                      <input
-                        type="number"
-                        name=""
-                        id=""
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
-                        placeholder="avalable quantity"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="text-sm py-1 sm:col-span-2 col-span-6 font-normal flex gap-2 items-center leading-tight tracking-tight text-[#858585]">
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    className=" accent-[#D20606]"
-                  />
-                  Show ticket sale end dates and sale status at checkout</div>
-                
-                <div className="sm:col-span-1 col-span-6">
-                  <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">
-                    Ticket sales per day
-                  </label>
-                  <div className="grid grid-cols-2 lg:gap-10 gap-4">
-                    <div className="sm:col-span-1 col-span-6">
-                    <div className="mt-2">
-                      <select
-                        id=""
-                        name=""
-                        autoComplete="name"
-                        className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
-                      >
-                        <option>Maximum</option>
-                        <option>100</option>
-                        <option>50</option>
-                      </select>
-                    </div>
-                    </div>
-                    <div className="sm:col-span-1 col-span-6">
-                      <div className="mt-2">
-                        <select
-                          id=""
-                          name=""
-                          autoComplete="name"
-                          className="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
-                        >
-                          <option>Minimum</option>
-                          <option>10</option>
-                          <option>20</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  
-
-                </div>
-                
-                <div className="sm:col-span-1 col-span-6">
-                  <label htmlFor="" className="block text-sm font-medium leading-6 text-gray-900">
-                    Sales channel
-                  </label>
-                  <div className="mt-2">
+                <div className=" grid grid-cols-6 w-full mt-5 poppins  items-center gap-10 sm:gap-20 justify-between">
+                  <div className="col-span-4">
                     <select
                       id=""
                       name=""
                       autoComplete="name"
-                      className="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
+                      className="block w-full bg-white rounded-sm border-0 mr-3 py-5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus-within:ring-[#333333]  sm:text-sm sm:leading-6 "
                     >
-                      <option>Social Media</option>
-                      <option>Physical</option>
-                      <option>Onsite</option>
+                      <option>Sales channel</option>
+                      <option>Entertainment</option>
+                      <option>Music</option>
+                      <option>Dance</option>
                     </select>
                   </div>
                 </div>
-
-                             
+              
+                          
               </div>
             </div>
           </div>
+
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <button type="reset" className="text-sm font-semibold leading-6 text-gray-900">
               Cancel
