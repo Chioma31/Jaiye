@@ -12,7 +12,7 @@ const Help = () => {
         </div>
       </div>
       <div className="px-6 md:px-10 xl:px-60 grid my-20 sm:grid-cols-2 grid-cols-1 gap-6 ">
-        <div className="p-14 shadow-md flex flex-col gap-2 justify-center items-center  flex-wrap">
+        <div className="p-14 shadow-md shadowRound flex flex-col gap-2 justify-center items-center  flex-wrap">
           <Image
           className=""
           height={50}
@@ -22,7 +22,7 @@ const Help = () => {
           />
           <div className="font-normal pt-1 text-[#353434] text-2xl">Account</div>
         </div>
-        <div className="p-14 shadow-md flex flex-col gap-2 justify-center items-center  flex-wrap">
+        <div className="p-14 shadow-md shadowRound flex flex-col gap-2 justify-center items-center  flex-wrap">
           <Image
           className=""
           height={50}

@@ -84,15 +84,26 @@ const Login =()=>{
         try {
             const response = await axios.post('https://tickeneft.onrender.com/api/user/login', {...inputValue})
             console.log("Login successful:" , response.data);
-            setIsLoginSuccessful(response.data.msg);
-            setLoginSuccessful(true);
-            setIsLoading(false);
 
-            if (rememberMe) {
-                localStorage.setItem('isLoggedIn', true);
+            if (response.data.success){
+                setIsLoginSuccessful(response.data.msg);
+                setLoginSuccessful(true);
+                setIsLoading(false);
+
+                const token = response?.data?.token;
+                localStorage.setItem("token", JSON.stringify(response?.data?.token));
+                document.cookie = `token=${token}; path=/;`;              
+
+                if (rememberMe) {
+                    localStorage.setItem('isLoggedIn', true);
+                }
+
+                router.push('/dashboard/organiser');
+            }else {
+                setHasLoginError(response.data.msg);
+                setLoginError(true)
+                setIsLoading(false)  
             }
-
-            router.push('/dashboard/organiser');
         
         } catch (error) 
             {console.log ("Login failed:", error);

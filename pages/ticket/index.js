@@ -24,7 +24,7 @@ const Ticket = (props) => {
     <>
       <CreateLayout title="Ticket">
         <div className="px-6 lg:px-1 mt-8">
-          <div className="flex lg:flex-row flex-col lg:items-center gap-10">
+          <div className="flex  items-center gap-10">
             <button
               onClick={(e)=> handleCurrent(e, "paid")}
               className={`rounded-[4px] col-span-1 px-9 py-1.5 hover:bg-[#D20606] hover:text-white  border  border-[#AEAEAE] 
@@ -79,10 +79,10 @@ const Ticket = (props) => {
                 </div>
 
                 
-                  <div className=" w-[65%]">
+                  <div className=" lg:w-[65%]">
                     {ticketSections.map((section, index) => (
-                      <div  id={`ticket${section.id}`} className=" grid grid-cols-2 w-full gap-32 mt-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full poppins col-span-1">
+                      <div  id={`ticket${section.id}`} className=" lg:grid grid-cols-2 w-full  lg:gap-32 mt-3">
+                        <div className="flex  items-center gap-4 w-full mb-8 poppins col-span-1">
                           <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
                             Ticket type:
                           </label>
@@ -101,7 +101,7 @@ const Ticket = (props) => {
                           </div>
                         </div>
                         <div className="  w-full col-span-1">
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-4  poppins ">
+                          <div className="flex items-center gap-4  poppins ">
                             <label  className="block text-[16px] font-[400] leading-6 text-gray-900">
                               Price:
                             </label>
@@ -139,7 +139,7 @@ const Ticket = (props) => {
                   </div>
                 </div>
                 <div className=" font-[400] text-[14px] mt-3">Ticket sales per day</div>
-                <div className=" grid grid-cols-6 w-full poppins  items-center gap-10 sm:gap-20 justify-between">
+                <div className="flex sm:grid grid-cols-6 w-full poppins  items-center gap-2 sm:gap-10  justify-between">
                   <div className="col-span-2">
                     <select
                       id=""
@@ -167,7 +167,7 @@ const Ticket = (props) => {
                     </select>
                   </div>
                 </div>
-                <div className=" grid grid-cols-6 w-full mt-5 poppins  items-center gap-10 sm:gap-20 justify-between">
+                <div className=" lg:grid grid-cols-6 w-full mt-5 poppins  items-center gap-10 sm:gap-20 justify-between">
                   <div className="col-span-4">
                     <select
                       id=""

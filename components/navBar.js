@@ -4,16 +4,11 @@ import { Dialog, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useState,Fragment } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 
 
-const navigation = [
-  { name: 'Home', href: '/', to: 'home' },
-  { name: 'About', href: '/about', to: 'about' },
-  { name: 'Create Event', href: '/info', to: 'create' },
-  { name: 'Help', href: '/help', to: 'help' },
-  { name: 'Login', href: '/login', to: 'login' },
-];
+
 
 
 
@@ -25,6 +20,23 @@ function NavBar () {
   const handleOpening = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  const { user, logout } = useAuth();
+
+  const navigation = [
+    { name: 'Home', href: '/', to: 'home' },
+    { name: 'About', href: '/about', to: 'about' },
+    { name: 'Create Event', href: '/info', to: 'create' },
+    { name: 'Help', href: '/help', to: 'help' },
+    
+  ];
+
+  if (!user) {
+    navigation.push({ name: 'Login', href: '/login', to: 'login' });
+  } else {
+    null
+  }
+
 
   
   // const genericHamburgerLine = `h-1 w-10 mt-[7px] rounded-full bg-[#AEAEAE] transition ease transform duration-300`;
@@ -134,7 +146,12 @@ function NavBar () {
                     </Menu.Item>
                   ))}
                   <Menu.Item >
+                  {!user ? 
                     <Link href="/signup" className="bg-[#D20606]  block sm:hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Sign Up</Link> 
+                    :
+                    <div onClick={logout} className="bg-[#D20606]  cursor-pointer block sm:hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Logout</div> 
+
+                  }
                   </Menu.Item>
                 </div>
               </Menu.Items>
@@ -150,8 +167,7 @@ function NavBar () {
               key={item.name}
               href={item.href}
               to={item.to}
-              activeClass="active"
-              smooth
+              activeclass="active"
               offset={-100}
               duration={900}
               className="text-white m-2 p-2"
@@ -159,7 +175,12 @@ function NavBar () {
               {item.name}
             </Link>
           ))}
-          <Link href="/signup" className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">Sign Up</Link>
+
+          {!user ? 
+            <Link href="/signup" className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">Sign Up</Link>
+            :
+            <div onClick={logout} className="bg-[#D20606] rounded-sm  text-white m-3 px-8 py-[5px]">logout</div>
+          }
         </div>
       </nav>
       

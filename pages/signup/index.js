@@ -131,10 +131,16 @@ const SignUp =()=> {
           );
           
           console.log("Sign-up successful:", response.data);
-          setIsSignUpSuccessful(response.data.msg);
-          setSignUpSuccessful(true);
-          setIsLoading(false);
-          router.push('/login');         
+          if (response.data.sucess){
+            setIsSignUpSuccessful(response.data.msg);
+            setSignUpSuccessful(true);
+            setIsLoading(false);
+            router.push('/auth'); 
+          }else{
+            setHasSignUpError(response.data.msg);
+            setSignUpError(true)
+          }
+                  
         } catch (error) {
             console.log("Sign-up failed:", error.response.data);
             setHasSignUpError(error.response.data.msg);

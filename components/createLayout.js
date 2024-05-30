@@ -80,14 +80,14 @@ export default function CreateLayout(props) {
                     </Link>
 
                     {/* Profile dropdown */}
-                    <Menu as="div" className="relative ml-3">
+                    {/* <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D20606] focus:ring-offset-2">
                           <span className="sr-only">Open user menu</span>
                           <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
                         </Menu.Button>
                       </div>
-                    </Menu>
+                    </Menu> */}
                   </div>
                   <div className="-mr-2 flex items-center sm:hidden">
                     {/* Mobile menu button */}
@@ -163,7 +163,7 @@ export default function CreateLayout(props) {
           </main>
         </div>
       </div>
-      <Footer />
+    <Footer />
     </>
   )
 }
