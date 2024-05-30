@@ -137,8 +137,9 @@ const SignUp =()=> {
             setIsLoading(false);
             router.push('/auth'); 
           }else{
-            setHasSignUpError(response.data.msg);
+            setHasSignUpError("Error signing up");
             setSignUpError(true)
+            setIsLoading(false);
           }
                   
         } catch (error) {

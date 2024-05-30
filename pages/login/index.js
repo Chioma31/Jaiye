@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Error, Successful } from "../../components/notification";
 import Loader from "../../components/loader";
 import { useRouter } from "next/router";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 
@@ -26,10 +27,13 @@ const Login =()=>{
 
     const [show, setShow] = useState(true);
 
+    const { user, login } = useAuth();
+
+
     useEffect(() => {
-        const isLoggedIn = checkLoginStatus();
-        if (isLoggedIn) {
-            router.push('/dashboard/organiser'); // Redirect to dashboard if user is already logged in
+        
+        if (user) {
+            router.push('/dashboard/organiser'); 
         }
     }, []);
 
@@ -83,27 +87,18 @@ const Login =()=>{
 
         try {
             const response = await axios.post('https://tickeneft.onrender.com/api/user/login', {...inputValue})
-            console.log("Login successful:" , response.data);
+            console.log("Login successful:" , response);
 
-            if (response.data.success){
-                setIsLoginSuccessful(response.data.msg);
-                setLoginSuccessful(true);
-                setIsLoading(false);
-
+            if (rememberMe) {
                 const token = response?.data?.token;
-                localStorage.setItem("token", JSON.stringify(response?.data?.token));
-                document.cookie = `token=${token}; path=/;`;              
-
-                if (rememberMe) {
-                    localStorage.setItem('isLoggedIn', true);
-                }
-
-                router.push('/dashboard/organiser');
-            }else {
-                setHasLoginError(response.data.msg);
-                setLoginError(true)
-                setIsLoading(false)  
+                login()
+                document.cookie = `token=${token}; path=/;`; 
             }
+
+            setIsLoginSuccessful(response.data.msg);
+            setLoginSuccessful(true);
+            setIsLoading(false);
+            router.push('/dashboard/organiser');
         
         } catch (error) 
             {console.log ("Login failed:", error);
@@ -115,11 +110,6 @@ const Login =()=>{
 
     };
 
-    const checkLoginStatus = () => {
-        // Check if user is already logged in by checking local storage or cookies
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        return isLoggedIn;
-    };
 
 
     return (

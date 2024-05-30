@@ -5,22 +5,16 @@ import Image from 'next/image'
 import Footer from "./footer"
 import { useRouter } from 'next/router';
 import Link from 'next/link'
+import NavBar from './navBar'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+
 const navigation = [
   { name: 'Basic info', href: '/info', current: true },
   { name: 'Details', href: '/details', current: false },
   { name: 'Ticket', href: '/ticket', current: false },
   { name: 'Publish', href: '/publish', current: false },
 ]
-const userNavigation = [
-  { name: 'Home', href: '/' },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -34,72 +28,60 @@ export default function CreateLayout(props) {
   return (
     <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="border-b border-gray-200 bg-white">
+        <NavBar />
+        <Disclosure as="nav" className="border-b border-gray-200 mt-24 lg:mt-36 bg-white">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 justify-between ">
-                  <div className="flex gap-8">
-                    <div className="flex flex-shrink-0 items-center">
-                      <Image
-                        className=" "
-                        height={80}
-                        width={120}
-                        src="/jaiye.png"
-                        alt=" Logo"
-                      />
-                    </div>
-                    <div className="hidden sm:-my-px sm:ml-6 sm:flex gap-6 sm:space-x-8">
-                      {navigation.map((item) => (
-                        <Link
-                        onClick={() => {
-                          setCurrentMenu(item.href);
-                        }}
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            currentMenu === item.href
-                              ? 'border-[#D20606] text-gray-900'
-                              : 'border-transparent text-gray-500 hover:border-[#D20606] hover:text-[#D20606]',
-                            'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="hidden sm:ml-6 sm:flex sm:items-center">
+              <div className="mx-auto max-w-[1300px]  px-4 sm:px-6 lg:px-8">
+                <div className="hidden xs:-my-px  xs:flex h-16  xs:justify-between sm:justify-start sm:gap-20 lg:gap-32 ">
+                  {navigation.map((item) => (
                     <Link
-                    href='/'
-                      type="button"
-                      className="rounded-[4px] px-3 py-1 bg-[#D20606] text-white hover:bg-white focus:outline-none focus:ring-2 hover:border hover:text-black hover:border-[#D20606] focus:ring-offset-2"
-                    >
-                      Home
-                    </Link>
-
-                    {/* Profile dropdown */}
-                    {/* <Menu as="div" className="relative ml-3">
-                      <div>
-                        <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D20606] focus:ring-offset-2">
-                          <span className="sr-only">Open user menu</span>
-                          <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
-                        </Menu.Button>
-                      </div>
-                    </Menu> */}
-                  </div>
-                  <div className="-mr-2 flex items-center sm:hidden">
-                    {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#D20606] focus:ring-offset-2">
-                      <span className="sr-only">Open main menu</span>
-                      {open ? (
-                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                      ) : (
-                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    onClick={() => {
+                      setCurrentMenu(item.href);
+                    }}
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        currentMenu === item.href
+                          ? 'border-[#D20606] text-gray-900'
+                          : 'border-transparent text-gray-500 hover:border-[#D20606] hover:text-[#D20606]',
+                        'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium'
                       )}
-                    </Disclosure.Button>
-                  </div>
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="hidden xs:ml-6 xs:flex xs:items-center">
+                  {/* <Link
+                  href='/'
+                    type="button"
+                    className="rounded-[4px] px-3 py-1 bg-[#D20606] text-white hover:bg-white focus:outline-none focus:ring-2 hover:border hover:text-black hover:border-[#D20606] focus:ring-offset-2"
+                  >
+                    Home
+                  </Link> */}
+
+                  {/* Profile dropdown */}
+                  {/* <Menu as="div" className="relative ml-3">
+                    <div>
+                      <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D20606] focus:ring-offset-2">
+                        <span className="sr-only">Open user menu</span>
+                        <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                      </Menu.Button>
+                    </div>
+                  </Menu> */}
+                </div>
+                <div className="-mr-2 flex items-center xs:hidden">
+                  {/* Mobile menu button */}
+                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#D20606] focus:ring-offset-2">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
                 </div>
               </div>
 
@@ -124,29 +106,7 @@ export default function CreateLayout(props) {
                     </Link>
                   ))}
                 </div>
-                <div className="border-t border-gray-200 pb-3 pt-4">
-                  <div className="flex items-center px-4">
-                    <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
-                    </div>
-                    <div className="ml-3">
-                      <div className="text-base font-medium text-gray-800">{user.name}</div>
-                      <div className="text-sm font-medium text-gray-500">{user.email}</div>
-                    </div>
-                  </div>
-                  <div className="mt-3 space-y-1">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="rounded-[4px] px-3 py-1 mx-4 bg-[#D20606] text-white hover:bg-white focus:outline-none focus:ring-2 hover:border hover:text-black hover:border-[#D20606] focus:ring-offset-2"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
-                  </div>
-                </div>
+               
               </Disclosure.Panel>
             </>
           )}

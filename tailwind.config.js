@@ -15,13 +15,9 @@ module.exports = {
       },
       screens: {
         mobile: '0px',
-        // => @media () { ... }
-
+        xs: '300px',
         tablet: '1024px',
-        // => @media (min-width: 768px, max:1023px) { ... }
-
-        desktop: '1280px',
-        // => @media (min-width: 1024px and max:1279px) { ... }
+        desktop: '1280px',        
       },
     },
 

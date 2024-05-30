@@ -17,9 +17,7 @@ function NavBar () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpening = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+
 
   const { user, logout } = useAuth();
 
@@ -113,7 +111,14 @@ function NavBar () {
             <div>
               <Menu.Button className="flex items-center  text-gray-400 hover:text-gray-600 ">
                 <span className="sr-only">Open options</span>
-                <Bars3Icon className="lg:h-18 hover:text-[#D20606]  lg:w-10 w-9 h-11 text-[#AEAEAE] font-bold" aria-hidden="true" />
+                
+                {mobileMenuOpen
+                  ? 
+                    (<XMarkIcon  onClick={() =>setMobileMenuOpen(false)} className="lg:h-18 text-[#AEAEAE]   lg:w-10 w-9 h-11  font-bold" aria-hidden="true"  />)
+                  : 
+                    (<Bars3Icon  onClick={() =>setMobileMenuOpen(true)} className="lg:h-18 text-[#AEAEAE]   lg:w-10 w-9 h-11  font-bold" aria-hidden="true" />)
+                }
+                
               </Menu.Button>
             </div>
 
@@ -158,7 +163,13 @@ function NavBar () {
             </Transition>
           </Menu>
 
-          <Link href="/signup" className="bg-[#D20606]  sm:block hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Sign Up</Link>
+          
+          {!user ? 
+            <Link href="/signup" className="bg-[#D20606]  sm:block hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Sign Up</Link>
+            :
+            <div onClick={logout} className="bg-[#D20606]  sm:block hidden rounded-sm  text-white m-3 px-4 text-sm py-[5px]">Log out</div>
+
+          }
         </div>
 
         <div className="hidden font-normal lg:flex text-lg lg:min-w-0 space-x-8">
