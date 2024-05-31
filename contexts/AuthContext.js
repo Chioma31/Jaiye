@@ -21,11 +21,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token) => {
     localStorage.setItem('token', token);
+    setCookie(null, 'token', token, { path: '/' });
     setUser({ token });
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    destroyCookie(null, 'token');
     setUser(null);
     router.push('/login');
   };

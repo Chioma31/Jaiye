@@ -36,6 +36,9 @@ function NavBar () {
   }
 
 
+// console.log(user, "this is the user")
+
+
   
   // const genericHamburgerLine = `h-1 w-10 mt-[7px] rounded-full bg-[#AEAEAE] transition ease transform duration-300`;
 

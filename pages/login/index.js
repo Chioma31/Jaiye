@@ -91,6 +91,7 @@ const Login =()=>{
 
             if (rememberMe) {
                 const token = response?.data?.token;
+                localStorage.setItem('token', token);
                 login()
                 document.cookie = `token=${token}; path=/;`; 
             }

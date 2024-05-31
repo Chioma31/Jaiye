@@ -2,7 +2,9 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const token = request.cookies.get('token'); // Adjust based on your auth logic
+  const token = request.cookies.get('token');
+  
+  console.log(token, "this is the token ")
 
   if (!token) {
     return NextResponse.redirect(new URL('/login', request.url));
@@ -12,5 +14,12 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/info/:path', '/events', '/public', '/details' , '/ticket',],
+  matcher: [
+    '/dashboard/:path*',
+    '/info/:path*',
+    '/events',
+    '/public',
+    '/details',
+    '/ticket',
+  ],
 };

@@ -1,14 +1,25 @@
 import Image from "next/image"
 import Footer from "../../components/footer"
 import NavBar from "../../components/navBar"
+import { useEffect, useState } from "react";
 
 const Help = () => {
+
+
+  const [fadeEffect, setFadeEffect] = useState(false);
+
+  useEffect(() => {
+    setFadeEffect(true);   
+  }, []);
+
   return(
     <>
     <NavBar />
       <div className="bg-[#AF0505] pb-8 pt-4">
-        <div className='text-4xl pt-20 pb-5 text-white text-center font-medium'>Jaiye Help Centre</div>
-        <div className='text-lg  text-white text-center font-normal'>Get answers to your to your questions
+        <div  className={` ${fadeEffect ? 'opacity-100 transition-opacity duration-[1500ms]' : 'opacity-0 transition-opacity duration-[1500ms]'}`}>
+          <div className='text-4xl pt-20 pb-5 text-white text-center font-medium'>Jaiye Help Centre</div>
+          <div className='text-lg  text-white text-center font-normal'>Get answers to your to your questions
+          </div>
         </div>
       </div>
       <div className="px-6 md:px-10 xl:px-60 grid my-20 sm:grid-cols-2 grid-cols-1 gap-6 ">
@@ -20,7 +31,9 @@ const Help = () => {
           src="/help1.svg"
           alt="icon"
           />
-          <div className="font-normal pt-1 text-[#353434] text-2xl">Account</div>
+          <div 
+            className={`font-normal pt-1 text-[#353434] text-2xl transition-opacity duration-[1500ms] ${fadeEffect ? 'opacity-100 ' : 'opacity-0 '}`}
+          >Account</div>
         </div>
         <div className="p-14 shadow-md shadowRound flex flex-col gap-2 justify-center items-center  flex-wrap">
           <Image
@@ -30,10 +43,14 @@ const Help = () => {
           src="/help2.svg"
           alt="icon"
           />
-          <div className="font-normal pt-1 text-[#353434] text-2xl">Privacy Policies</div>
+          <div 
+            className={`font-normal pt-1 text-[#353434] text-2xl transition-opacity duration-[1500ms] ${fadeEffect ? 'opacity-100 ' : 'opacity-0 '}`}
+          >Privacy Policies</div>
         </div>
       </div>
-      <div className="px-6 md:px-10 xl:px-60 pb-28 bg-white">
+      <div 
+        className={`px-6 md:px-10 xl:px-60 pb-28 bg-white ${fadeEffect ? 'opacity-100 transition-opacity duration-[1500ms]' : 'opacity-0 transition-opacity duration-[1500ms]'}`}
+      >
         <div className='text-lg  text-[#0C0B0B] mb-8 font-normal'>Still have questions?, email us <span className="text-[#D20606]">jaiyeteams@gmail.com </span>or send drop your question below
         </div>
         <div className="flex sm:flex-row  flex-col sm:gap-0 gap-4  mb-14">

@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 
@@ -40,12 +40,21 @@ const card = [
 function WebLandingPageViewbk2(props) {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [fadeEffect, setFadeEffect] = useState(false);
+
+  useEffect(() => {
+    setFadeEffect(true);   
+  }, []);
+
+  
   
   return (
     <>
       <NavBar />
         <div className="h-[50px] "></div>
-        <div className="2xl:px-auto w-full h-screen ">
+
+        <div  className="2xl:px-auto w-full h-screen ">
           {/* hero start */}
           <div className="relative w-auto lg:h-[88vh] h-[50vh] lg:bg-[url('/jaiye1.png')] bg-[url('/jaiye2.png')] bg-cover">
             {/* Black Filter */}
@@ -53,23 +62,28 @@ function WebLandingPageViewbk2(props) {
           </div>
 
           {/* Image outside the container with opacity */}
-          <div className="hidden lg:flex px-6 2xl:px-28 absolute top-72  items-center justify-start">
-            <Image
-              className=""
-              height={400}
-              width={790}
-              src="/text.png"
-              alt="Text"
-            />
-          </div>
-          <div className="lg:hidden  px-6 2xl:px-28 absolute top-60  flex items-center justify-start">
-            <Image
-              className=""
-              height={400}
-              width={290}
-              src="/text.png"
-              alt="Text"
-            />
+          <div  
+            className={` ${fadeEffect ? 'opacity-100 transition-opacity duration-[1500ms]' : 'opacity-0 transition-opacity duration-[1500ms]'}`}
+          >
+            <div className="hidden lg:flex px-6 2xl:px-28 absolute top-72  items-center justify-start">
+              <Image
+                className=""
+                height={400}
+                width={790}
+                src="/text.png"
+                alt="Text"
+              />
+            </div>
+            <div className="lg:hidden  px-6 2xl:px-28 absolute top-60  flex items-center justify-start">
+              <Image
+                className=""
+                height={400}
+                width={290}
+                src="/text.png"
+                alt="Text"
+              />
+            </div>
+
           </div>
 
           

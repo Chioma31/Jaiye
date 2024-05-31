@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
@@ -25,6 +25,12 @@ export default function CreateLayout(props) {
   const router = useRouter();
   const [currentMenu, setCurrentMenu] = useState(router.pathname);
 
+  const [fadeEffect, setFadeEffect] = useState(false);
+
+  useEffect(() => {
+    setFadeEffect(true);   
+  }, [currentMenu]);
+
   return (
     <>
       <div className="min-h-full">
@@ -36,9 +42,9 @@ export default function CreateLayout(props) {
                 <div className="hidden xs:-my-px  xs:flex h-16  xs:justify-between sm:justify-start sm:gap-20 lg:gap-32 ">
                   {navigation.map((item) => (
                     <Link
-                    onClick={() => {
-                      setCurrentMenu(item.href);
-                    }}
+                      onClick={() => {
+                        setCurrentMenu(item.href);
+                      }}
                       key={item.name}
                       href={item.href}
                       className={classNames(
@@ -112,7 +118,7 @@ export default function CreateLayout(props) {
           )}
         </Disclosure>
 
-        <div className="py-10">
+        <div className={`py-10 ${fadeEffect ? 'opacity-100 transition-opacity duration-[1500ms]' : 'opacity-0 transition-opacity duration-[1500ms]'}`} id='content'>
           <header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <h1 className="text-[55px] font-bold font-poppins poppins leading-tight tracking-tight text-gray-900">{props.title}</h1>

@@ -2,13 +2,29 @@ import Image from "next/image"
 import Footer from "../../components/footer"
 import NavBar from "../../components/navBar"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 const About = () => {
+
+
+  const [fadeEffect, setFadeEffect] = useState(false);
+
+  useEffect(() => {
+    setFadeEffect(true);   
+  }, []);
+
   return(
     <>
     <NavBar />
       <div className=" w-full lg:bg-[url('/about.png')] bg-[url('/about.png')] bg-cover ">            
-        <div className='px-6  2xl:px-28 lg:py-56 py-20 text-center font-semibold flex items-center justify-center text-white lg:text-6xl text-4xl tracking-wide lg:leading-[80px]  backdrop-blur-[2px]'>
+        <div 
+          className={`px-6  2xl:px-28 lg:py-56 py-20
+           text-center font-semibold flex items-center
+           justify-center text-white lg:text-6xl text-4xl 
+           tracking-wide lg:leading-[80px]  backdrop-blur-[2px]
+           ${fadeEffect ? 'opacity-100 transition-opacity duration-[1500ms]' : 'opacity-0 transition-opacity duration-[1500ms]'}
+           `}
+        >
           <h1>Discovering Events Online <br /> Made Easy with Jaiye  </h1>
         </div>
       </div>
